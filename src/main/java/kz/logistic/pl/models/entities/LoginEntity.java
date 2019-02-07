@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class LoginEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long login_id;
+    private Long loginId;
 
     @Column(name = "username")
     private String username;
@@ -22,7 +22,9 @@ public class LoginEntity {
     private String password;
 
     @Column(name = "roles_id")
-    private Integer roles_id;
+    private Integer rolesId;
+    //  @Column(name = "customer_id")
+    //  private Integer customerId;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "seller_company_id")
@@ -32,6 +34,7 @@ public class LoginEntity {
     @JoinColumn(name = "customer_id")
     private CustomerEntity customerEntity;
 
-    @Column(name = "shipper_id")
-    private Long shipper_id;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shipper_id")
+    private ShipperEntity shipperEntity;
 }
