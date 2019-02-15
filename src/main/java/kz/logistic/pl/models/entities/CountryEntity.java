@@ -8,8 +8,9 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "city")
+@Table(name = "country")
 public class CountryEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long countryId;

@@ -4,6 +4,9 @@ import kz.logistic.pl.models.builders.LocalizedMessageModelBuilder;
 import kz.logistic.pl.models.builders.impl.MessageSourceLocalizedMessageModelBuilder;
 import kz.logistic.pl.models.factories.LocalizedMessageBuilderFactory;
 import kz.logistic.pl.models.factories.impl.MessageSourceBuilderFactory;
+import kz.logistic.pl.models.pojos.impl.DefaultCity;
+import kz.logistic.pl.models.pojos.impl.DefaultCountry;
+import kz.logistic.pl.models.pojos.impl.DefaultRegion;
 import kz.logistic.pl.services.impl.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +14,24 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ServiceConfig {
+
+    @Bean
+    @Qualifier("defaultRegionService")
+    public DefaultRegionService regionService() {
+        return new DefaultRegionService();
+    }
+
+    @Bean
+    @Qualifier("defaultCountryService")
+    public DefaultCountryService countryService() {
+        return new DefaultCountryService();
+    }
+
+    @Bean
+    @Qualifier("defaultCityService")
+    public DefaultCityService cityService() {
+        return new DefaultCityService();
+    }
 
   @Bean
   @Qualifier("defaultRoleService")
@@ -24,6 +45,11 @@ public class ServiceConfig {
         return new DefaultShipperService();
     }
 
+    @Bean
+    @Qualifier("defaultProductService")
+    public DefaultProductService productService() {
+        return new DefaultProductService();
+    }
 
   @Bean
   @Qualifier("defaultSellerCompanyService")

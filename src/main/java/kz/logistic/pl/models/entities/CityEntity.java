@@ -16,7 +16,7 @@ public class CityEntity {
     private Long cityId;
 
     @Column(name = "city_name_kk")
-    private String ciyNameKk;
+    private String cityNameKk;
 
     @Column(name = "city_name_ru")
     private String cityNameRu;
@@ -26,4 +26,7 @@ public class CityEntity {
 
     @Column(name = "region_id")
     private Long regionId;
+
+    @Column(name = "country_id")
+    private Long countryId;
 }
