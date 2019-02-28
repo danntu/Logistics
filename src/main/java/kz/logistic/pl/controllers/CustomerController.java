@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Api(tags = {"Список клиентов"}, description = "API для списка клиентов")
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/customer")
 public class CustomerController {
 
@@ -33,7 +34,7 @@ public class CustomerController {
 
   @ApiOperation(value = "Показывает клиента по ID")
   @GetMapping("{id}")
-  public ResponseEntity<?> getId(@PathVariable(value = "id") Long customerId) {
+  public ResponseEntity<?> getId(@PathVariable(value = "id") Long customerId) throws Exception {
     return ResponseEntity.ok(this.customerService.showCustomer(customerId));
   }
 

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Api(tags = {"Список доставщиков"}, description = "API для списка доставщиков")
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/shipper")
 public class ShipperController {
 
@@ -29,7 +30,7 @@ public class ShipperController {
   }
 
   @ApiOperation(value = "Показывает весь список доставщиков")
-  @RequestMapping(value = "/all", method = RequestMethod.GET)
+  @GetMapping("/all")
   public ResponseEntity<?> all() {
     return ResponseEntity.ok(this.shipperService.showAllShippers());
   }

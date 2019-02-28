@@ -1,16 +1,11 @@
 package kz.logistic.pl.models.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import java.sql.Date;
+import java.util.Date;
 
 
 @Setter
@@ -30,6 +25,7 @@ public class CreditCardEntity {
   private String holderName;
 
   @Column(name = "expire_date")
+  @Temporal(TemporalType.DATE)
   private Date expireDate;
 
 }

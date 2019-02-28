@@ -13,6 +13,30 @@ import org.springframework.context.annotation.Configuration;
 public class ServiceConfig {
 
   @Bean
+  @Qualifier("defaultSelleCategoryService")
+  public DefaultSellerCategoryService categoryService() {
+    return new DefaultSellerCategoryService();
+  }
+
+  @Bean
+  @Qualifier("defaultDistrictService")
+  public DefaultDistrictService districtService() {
+    return new DefaultDistrictService();
+  }
+
+  @Bean
+  @Qualifier("defaultAddressService")
+  public DefaultAddressService addressService() {
+    return new DefaultAddressService();
+  }
+
+  @Bean
+  @Qualifier("defaultCreditCardService")
+  public DefaultCreditcardService creditCardService() {
+    return new DefaultCreditcardService();
+  }
+
+  @Bean
   @Qualifier("defaultRegionService")
   public DefaultRegionService regionService() {
     return new DefaultRegionService();
@@ -26,8 +50,8 @@ public class ServiceConfig {
 
   @Bean
   @Qualifier("defaultSessionService")
-  public DefaultSessionService defaultSessionService() {
-    return new DefaultSessionService();
+  public DefaultAuthenticationService defaultAuthenticationService() {
+    return new DefaultAuthenticationService();
   }
 
   @Bean
@@ -58,6 +82,12 @@ public class ServiceConfig {
   @Qualifier("defaultProductService")
   public DefaultProductService productService() {
     return new DefaultProductService();
+  }
+
+  @Bean
+  @Qualifier("defaultAuthenticationService")
+  public DefaultAuthenticationService authenticationService() {
+    return new DefaultAuthenticationService();
   }
 
   @Bean

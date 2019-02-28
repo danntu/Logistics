@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LoginRepository extends JpaRepository<LoginEntity, Long> {
-  List<LoginEntity> findByCustomerEntityCustomerIdIsNotNull();
+    List<LoginEntity> findByCustomerEntityCustomerIdIsNotNull();
 
-  ArrayList<LoginEntity> findByUsernameAndPassword(String username, String password);
+    LoginEntity findByUsernameAndPassword(String username, String password);
 
-  ArrayList<LoginEntity> findByUsername(String username);
+    LoginEntity findByUsername(String username);
 }
