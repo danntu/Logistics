@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 @Setter
 @Getter
 public class MobilePhone {
-    private String a;
+ private String s;
 
 
     @Size(min = 10, max = 11, message = "Номер телефона должен быть из 10 или 11 символов")
