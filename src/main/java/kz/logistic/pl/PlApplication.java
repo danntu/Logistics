@@ -12,4 +12,8 @@ public class PlApplication {
     public static void main(String[] args) {
         SpringApplication.run(PlApplication.class, args);
     }
+
+    public void Berik(){
+        System.out.println("Berik");
+    }
 }
