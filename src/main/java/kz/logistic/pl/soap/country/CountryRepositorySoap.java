@@ -1,10 +1,10 @@
-package kz.logistic.pl.soap;
+package kz.logistic.pl.soap.country;
 
 import kz.logistic.pl.models.entities.CountryEntity;
 import kz.logistic.pl.repositories.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import soap.logistic.logistics.Country;
+import soap.logistic.country.Country;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
@@ -61,8 +61,23 @@ public class CountryRepositorySoap {
     country.setCountryNameKk(countryEntity.getCountryNameKk());
     country.setId(countryEntity.getCountryId());
 
-    countryMap.put(country.getId(), country);
+        countryMap.put(country.getId(), country);
     return country;
+  }
+
+  public Country updateCountry(Long id, String nameKk, String nameRu, String nameEn) {
+    Country c = countryMap.get(id);
+    c.setCountryNameEn(nameEn);
+    c.setCountryNameRu(nameRu);
+    c.setCountryNameKk(nameKk);
+
+    repository.updateCountryById(id, nameEn, nameRu, nameKk);
+
+    return c;
+  }
+
+  public Map<Long, Country> getAllCountry(){
+    return countryMap;
   }
 
   public String deleteCountryId(Long id) {
