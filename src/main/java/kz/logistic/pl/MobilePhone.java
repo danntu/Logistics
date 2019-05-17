@@ -10,8 +10,7 @@ import javax.validation.constraints.Size;
 @Getter
 public class MobilePhone {
     private String a;
-    private String b;
-    private String c;
+
 
     @Size(min = 10, max = 11, message = "Номер телефона должен быть из 10 или 11 символов")
     @Pattern(regexp = "^[7-8][0-9]{1,10}$", message = "Номер телефона должен содержать только цифры")
