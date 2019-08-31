@@ -94,16 +94,18 @@ public class CustomerRepositorySoap {
 
   private Customer convertToCustomer(CustomerEntity entity) {
     Customer customer = new Customer();
-    customer.setCustomerNameEn(entity.getCustomerNameEn());
-    customer.setCustomerNameRu(entity.getCustomerNameRu());
-    customer.setCustomerNameKk(entity.getCustomerNameKk());
-    customer.setCustomerId(entity.getCustomerId());
-    customer.setAddInfo(entity.getAddInfo());
-    customer.setEmail(entity.getEmail());
-    customer.setIinOrBin(entity.getIinOrBin());
-    customer.setMobilePhone(entity.getMobilePhone());
-    customer.setPhoneNumber(entity.getPhoneNumber());
-    customer.setAddressId(entity.getAddressId());
+    if(entity != null){
+      customer.setCustomerNameEn(entity.getCustomerNameEn());
+      customer.setCustomerNameRu(entity.getCustomerNameRu());
+      customer.setCustomerNameKk(entity.getCustomerNameKk());
+      customer.setCustomerId(entity.getCustomerId());
+      customer.setAddInfo(entity.getAddInfo());
+      customer.setEmail(entity.getEmail());
+      customer.setIinOrBin(entity.getIinOrBin());
+      customer.setMobilePhone(entity.getMobilePhone());
+      customer.setPhoneNumber(entity.getPhoneNumber());
+      customer.setAddressId(entity.getAddressId());
+    }
 
     return customer;
   }
