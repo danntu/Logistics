@@ -106,13 +106,15 @@ public class DefaultCustomerService implements CustomerService {
 
     @Override
     public boolean exists(MobilePhone username) {
-        LoginEntity loginEntity = this.loginRepository.findByUsername(username.getMobilePhone());
+        LoginEntity loginEntity = this.loginRepository
+          .findByUsername(username.getMobilePhone())
+          .orElse(null);
         return loginEntity != null;
     }
 
   @Override
   public boolean exists(String username) {
-    LoginEntity loginEntity = this.loginRepository.findByUsername(username);
+    LoginEntity loginEntity = this.loginRepository.findByUsername(username).orElse(null);
     return loginEntity != null;
   }
 
@@ -133,7 +135,38 @@ public class DefaultCustomerService implements CustomerService {
         return java.text.MessageFormat.format(returnMessage.getCustomerAddSuccess(), username);
     }
 
-    @Override
+  @Override
+  public String addCustomerAllParams(String username, String password,
+                                     String customerNameKk, String customerNameRu,
+                                     String customerNameEn, String mobilePhone, String email,
+                                     String phoneNumber, String addInfo, String iinOrBin) throws IOException {
+    if (exists(username)) {
+      return "Данный логин уже занят";
+    }
+    LoginEntity loginEntity = new LoginEntity();
+    loginEntity.setUsername(username);
+    loginEntity.setPassword(password);
+
+    CustomerEntity customerEntity = new CustomerEntity();
+
+    customerEntity.setEmail(email);
+    customerEntity.setAddInfo(addInfo);
+    customerEntity.setCustomerNameEn(customerNameEn);
+    customerEntity.setCustomerNameKk(customerNameKk);
+    customerEntity.setCustomerNameRu(customerNameRu);
+    customerEntity.setIinOrBin(iinOrBin);
+    customerEntity.setMobilePhone(mobilePhone);
+    customerEntity.setPhoneNumber(phoneNumber);
+
+    this.customerRepository.save(customerEntity);
+    loginEntity.setCustomerEntity(customerEntity);
+    this.loginRepository.save(loginEntity);
+    log.info("Added new customer via all params, username "
+      + username + ". " + new Date());
+    return java.text.MessageFormat.format(returnMessage.getCustomerAddSuccess(), username);
+  }
+
+  @Override
     public String addCustomerJson(CustomerJson customerJson) {
     if (exists(customerJson.getUsername())) {
         return "Данный логин уже занят";

@@ -88,9 +88,29 @@ public class CustomerController {
     @RequestParam String username,
     @RequestParam String password) throws IOException {
     ResponseMessage message = new ResponseMessage();
+    message.setStatus(this.customerService.exists(username) ? "fail" : "success" );
     message.setMessage(this.customerService.addCustomer(username, password));
-    message.setStatus(customerService.exists(username) ? "fail" :"success");
+    return ResponseEntity.ok(message);
+  }
 
+  @ApiOperation(value = "Добавляет клиента все параметры. Ответ json")
+  @PostMapping("/addV2AllParams")
+  public ResponseEntity<?> addAllRequest(
+    @RequestParam String username, @RequestParam String password,
+    @RequestParam(required = false) String customerNameKk, @RequestParam(required = false) String customerNameRu,
+    @RequestParam(required = false) String customerNameEn, @RequestParam(required = false) String mobilePhone,
+    @RequestParam(required = false) String email, @RequestParam(required = false) String phoneNumber,
+    @RequestParam(required = false) String addInfo, @RequestParam(required = false) String iinOrBin
+    ) throws IOException {
+    ResponseMessage message = new ResponseMessage();
+    message.setStatus(this.customerService.exists(username) ? "fail" : "success" );
+    message.setMessage(
+      this.customerService.addCustomerAllParams(username, password,
+        customerNameKk, customerNameRu,
+        customerNameEn, mobilePhone,
+        email, phoneNumber,
+        addInfo, iinOrBin)
+    );
     return ResponseEntity.ok(message);
   }
 
